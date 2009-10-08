@@ -47,6 +47,16 @@ $(".carousel").jCarouselLite({
 });
 @desc Creates a basic carousel. Clicking "btnPrev" navigates backwards and "btnNext" navigates forward.
 
+@option ul - string - "ul"
+@desc This is a CSS selector for which ul elements in your div you
+want used for the carousel. Useful for when your carousel list has
+sublists.
+
+@option li - string - "li"
+@desc This is a CSS selector for which li elements in the selected ul
+you want used for the carousel. Useful for when your carousel list has
+sublists.
+
 @option btnGo - array - no defaults
 @example
 $(".carousel").jCarouselLite({

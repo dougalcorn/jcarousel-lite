@@ -53,6 +53,16 @@
  *
  * @param an options object - You can specify all the options shown below as an options object param.
  *
+ * @option ul - string - "ul"
+ * @desc This is a CSS selector for which ul elements in your div you
+ * want used for the carousel. Useful for when your carousel list has
+ * sublists.
+ * 
+ * @option li - string - "li"
+ * @desc This is a CSS selector for which li elements in the selected ul
+ * you want used for the carousel. Useful for when your carousel list has
+ * sublists.
+ * 
  * @option btnPrev, btnNext : string - no defaults
  * @example
  * $(".carousel").jCarouselLite({
@@ -203,6 +213,8 @@
 (function($) {                                          // Compliant with jquery.noConflict()
 $.fn.jCarouselLite = function(o) {
     o = $.extend({
+        ul: "ul",
+        li: "li",
         btnPrev: null,
         btnNext: null,
         btnGo: null,
@@ -225,7 +237,7 @@ $.fn.jCarouselLite = function(o) {
     return this.each(function() {                           // Returns the element collection. Chainable.
 
         var running = false, animCss=o.vertical?"top":"left", sizeCss=o.vertical?"height":"width";
-        var div = $(this), ul = $("ul", div), tLi = $("li", ul), tl = tLi.size(), v = o.visible;
+        var div = $(this), ul = $(o.ul, div), tLi = $(o.li, ul), tl = tLi.size(), v = o.visible;
 
         if(o.circular) {
             ul.prepend(tLi.slice(tl-v-1+1).clone())
@@ -233,7 +245,7 @@ $.fn.jCarouselLite = function(o) {
             o.start += v;
         }
 
-        var li = $("li", ul), itemLength = li.size(), curr = o.start;
+        var li = $(o.li, ul), itemLength = li.size(), curr = o.start;
         div.css("visibility", "visible");
 
         li.css({overflow: "hidden", float: o.vertical ? "none" : "left"});
